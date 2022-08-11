@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## Local Configuration files ##
+/src/main/resources/application.properties
+/src/main/resources/liquibase.properties
