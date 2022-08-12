@@ -39,6 +39,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -57,10 +63,34 @@
 
 	<build>
 		<plugins>
+			<!-- Spring Boot Framework-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Liquibase Setup for CLI-->
+			<plugin>
+				<!--start with basic information to get Liquibase plugin:
+                include <groupId>, <artifactID>, and <version> elements-->
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.15.0</version>
+				<configuration>
+					<!--set values for Liquibase properties and settings
+                    for example, the location of a properties file to use-->
+					<propertyFile>target/classes/liquibase.properties</propertyFile>
+				</configuration>
+				<dependencies>
+					<!--set up any dependencies for Liquibase to function in your environment for example, a database-specific plugin-->
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>2.1.214</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
 	<repositories>
